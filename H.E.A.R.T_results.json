@@ -1,0 +1,182 @@
+{
+  "n_rows": 1081,
+  "removed_dupes": 1081,
+  "n_features": 15,
+  "features": [
+    "Age",
+    "Systolic BP",
+    "Diastolic",
+    "BS",
+    "Body Temp",
+    "BMI",
+    "Heart Rate",
+    "Previous Complications",
+    "Preexisting Diabetes",
+    "Gestational Diabetes",
+    "Mental Health",
+    "PulsePressure",
+    "MAP",
+    "DiabetesRisk",
+    "AgeGroupEnc"
+  ],
+  "classes": [
+    "high",
+    "low"
+  ],
+  "label_map": {
+    "0": "high",
+    "1": "low"
+  },
+  "results": {
+    "Random Forest": {
+      "train_acc": 98.38,
+      "test_acc": 97.7,
+      "gap": 0.68,
+      "cv_mean": 97.22,
+      "cv_std": 0.93,
+      "report": {
+        "high": {
+          "precision": 0.9866666666666667,
+          "recall": 0.9487179487179487,
+          "f1-score": 0.9673202614379085,
+          "support": 78.0
+        },
+        "low": {
+          "precision": 0.971830985915493,
+          "recall": 0.9928057553956835,
+          "f1-score": 0.9822064056939501,
+          "support": 139.0
+        },
+        "accuracy": 0.9769585253456221,
+        "macro avg": {
+          "precision": 0.9792488262910799,
+          "recall": 0.9707618520568161,
+          "f1-score": 0.9747633335659294,
+          "support": 217.0
+        },
+        "weighted avg": {
+          "precision": 0.9771636269228274,
+          "recall": 0.9769585253456221,
+          "f1-score": 0.9768556257309489,
+          "support": 217.0
+        }
+      },
+      "cm": [
+        [
+          74,
+          4
+        ],
+        [
+          1,
+          138
+        ]
+      ]
+    },
+    "Gradient Boosting": {
+      "train_acc": 100.0,
+      "test_acc": 99.08,
+      "gap": 0.92,
+      "cv_mean": 98.73,
+      "cv_std": 1.0,
+      "report": {
+        "high": {
+          "precision": 0.9871794871794872,
+          "recall": 0.9871794871794872,
+          "f1-score": 0.9871794871794872,
+          "support": 78.0
+        },
+        "low": {
+          "precision": 0.9928057553956835,
+          "recall": 0.9928057553956835,
+          "f1-score": 0.9928057553956835,
+          "support": 139.0
+        },
+        "accuracy": 0.9907834101382489,
+        "macro avg": {
+          "precision": 0.9899926212875854,
+          "recall": 0.9899926212875854,
+          "f1-score": 0.9899926212875854,
+          "support": 217.0
+        },
+        "weighted avg": {
+          "precision": 0.9907834101382489,
+          "recall": 0.9907834101382489,
+          "f1-score": 0.9907834101382489,
+          "support": 217.0
+        }
+      },
+      "cm": [
+        [
+          77,
+          1
+        ],
+        [
+          1,
+          138
+        ]
+      ]
+    },
+    "Logistic Regression": {
+      "train_acc": 97.11,
+      "test_acc": 95.39,
+      "gap": 1.71,
+      "cv_mean": 97.11,
+      "cv_std": 1.1,
+      "report": {
+        "high": {
+          "precision": 0.9594594594594594,
+          "recall": 0.9102564102564102,
+          "f1-score": 0.9342105263157895,
+          "support": 78.0
+        },
+        "low": {
+          "precision": 0.951048951048951,
+          "recall": 0.9784172661870504,
+          "f1-score": 0.9645390070921985,
+          "support": 139.0
+        },
+        "accuracy": 0.9539170506912442,
+        "macro avg": {
+          "precision": 0.9552542052542052,
+          "recall": 0.9443368382217303,
+          "f1-score": 0.949374766703994,
+          "support": 217.0
+        },
+        "weighted avg": {
+          "precision": 0.9540720831043411,
+          "recall": 0.9539170506912442,
+          "f1-score": 0.9536375255227981,
+          "support": 217.0
+        }
+      },
+      "cm": [
+        [
+          71,
+          7
+        ],
+        [
+          3,
+          136
+        ]
+      ]
+    }
+  },
+  "importances": {
+    "Age": 0.79,
+    "Systolic BP": 1.37,
+    "Diastolic": 1.33,
+    "BS": 11.1,
+    "Body Temp": 0.29,
+    "BMI": 10.88,
+    "Heart Rate": 11.25,
+    "Previous Complications": 4.04,
+    "Preexisting Diabetes": 10.59,
+    "Gestational Diabetes": 4.48,
+    "Mental Health": 10.33,
+    "PulsePressure": 0.32,
+    "MAP": 1.79,
+    "DiabetesRisk": 31.31,
+    "AgeGroupEnc": 0.13
+  },
+  "best_model": "Gradient Boosting"
+}
