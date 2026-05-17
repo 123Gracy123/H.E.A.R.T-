@@ -1,0 +1,90 @@
+// H.E.A.R.T — Prisma schema for maternal cardiovascular health platform
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  PATIENT
+  DOCTOR
+  ADMIN
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(PATIENT)
+  createdAt DateTime @default(now())
+  patient   Patient?
+  sent      Message[] @relation("SentMessages")
+  received  Message[] @relation("ReceivedMessages")
+}
+
+model Patient {
+  id           String @id @default(cuid())
+  userId       String @unique
+  user         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  age          Int?
+  trimester    String?
+  bloodPressure String?
+  heartRate    Int?
+  oxygenLevel  Float?
+  cholesterol  Int?
+  weight       Float?
+  sleepHours   Float?
+  stressLevel  Int?
+  riskScore    Float  @default(25)
+}
+
+model Message {
+  id            String   @id @default(cuid())
+  senderId      String
+  receiverId    String?
+  sender        User     @relation("SentMessages", fields: [senderId], references: [id])
+  receiver      User?    @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  content       String
+  anonymousName String
+  timestamp     DateTime @default(now())
+}
+
+model Hospital {
+  id                     String @id @default(cuid())
+  name                   String
+  city                   String
+  county                 String
+  maternalHealthScore    Float
+  cardiovascularRiskRate Float
+  mortalityRate          Float
+  prenatalAccess         Float
+  postpartumFollowUp     Float
+  latitude               Float
+  longitude              Float
+}
+
+model Bookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  articleId String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, articleId])
+}
+
+model ForumPost {
+  id            String      @id @default(cuid())
+  parentId      String?
+  parent        ForumPost?  @relation("ThreadReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies       ForumPost[] @relation("ThreadReplies")
+  title         String?
+  tag           String?
+  content       String
+  anonymousName String
+  senderId      String?
+  createdAt     DateTime    @default(now())
+}
