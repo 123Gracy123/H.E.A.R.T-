@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" fill="none">
+  <defs>
+    <linearGradient id="heartGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#C44B5C"/>
+      <stop offset="35%" stop-color="#A91D45"/>
+      <stop offset="70%" stop-color="#8B1538"/>
+      <stop offset="100%" stop-color="#6B1029"/>
+    </linearGradient>
+    <linearGradient id="heartHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E8A0A8" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#8B1538" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="ventricleGrad" cx="50%" cy="60%" r="45%">
+      <stop offset="0%" stop-color="#7A1230" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#4A0A1A" stop-opacity="0.9"/>
+    </radialGradient>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Outer silhouette -->
+  <path
+    d="M200 38 C248 18 292 52 302 95 C328 72 368 98 378 142 C388 198 352 248 308 292 L200 458 L92 292 C48 248 12 198 22 142 C32 98 72 72 98 95 C108 52 152 18 200 38Z"
+    fill="url(#heartGrad)"
+    filter="url(#softGlow)"
+  />
+  <!-- Highlight overlay -->
+  <path
+    d="M200 38 C248 18 292 52 302 95 C328 72 368 98 378 142 C388 198 352 248 308 292 L200 458 L92 292 C48 248 12 198 22 142 C32 98 72 72 98 95 C108 52 152 18 200 38Z"
+    fill="url(#heartHighlight)"
+    opacity="0.7"
+  />
+  <!-- Interventricular groove -->
+  <path
+    d="M200 95 C175 115 158 155 168 205 C155 235 148 285 168 330 C185 355 195 380 200 420 C205 380 215 355 232 330 C252 285 245 235 232 205 C242 155 225 115 200 95Z"
+    fill="url(#ventricleGrad)"
+    opacity="0.85"
+  />
+  <!-- Left atrium -->
+  <ellipse cx="125" cy="155" rx="38" ry="48" fill="#9B1A3D" opacity="0.55"/>
+  <ellipse cx="125" cy="150" rx="22" ry="28" fill="#B83A52" opacity="0.35"/>
+  <!-- Right atrium -->
+  <ellipse cx="275" cy="155" rx="38" ry="48" fill="#9B1A3D" opacity="0.55"/>
+  <ellipse cx="275" cy="150" rx="22" ry="28" fill="#B83A52" opacity="0.35"/>
+  <!-- Aorta arch -->
+  <path
+    d="M200 55 C185 35 165 30 155 50 C150 65 165 75 180 70 L200 95 C220 75 245 70 250 55 C255 38 235 28 220 40 Z"
+    fill="#A91D45"
+    opacity="0.75"
+  />
+  <path d="M200 55 L200 95" stroke="#C44B5C" stroke-width="2.5" opacity="0.5"/>
+  <!-- Pulmonary trunk hint -->
+  <path d="M175 68 L200 88 L225 68" stroke="#C44B5C" stroke-width="2" opacity="0.45" fill="none"/>
+  <!-- Coronary vessel hints -->
+  <path d="M130 200 Q160 185 200 195 Q240 185 270 200" stroke="#D96B7A" stroke-width="1.5" fill="none" opacity="0.4"/>
+  <path d="M145 250 Q200 235 255 250" stroke="#D96B7A" stroke-width="1" fill="none" opacity="0.3"/>
+</svg>
