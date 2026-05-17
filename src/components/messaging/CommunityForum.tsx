@@ -311,7 +311,11 @@ export function CommunityForum({ displayName }: CommunityForumProps) {
     <div className="flex flex-1 flex-col">
       <p className="mb-4 flex items-center gap-2 text-sm text-heart-muted">
         <Users className="h-4 w-4 text-heart-primary" />
+<<<<<<< HEAD
         A safe space for cardiovascular risks, wellness, emotional support, and lifestyle changes.
+=======
+        Connect with other mothers — share experiences, recipes, and encouragement.
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
       </p>
 
       <GlassCard className="mb-6 p-4">
@@ -323,7 +327,11 @@ export function CommunityForum({ displayName }: CommunityForumProps) {
           onChange={(e) => setNewTitle(e.target.value)}
         />
         <div className="mt-2 flex flex-wrap gap-2">
+<<<<<<< HEAD
           {["Wellness", "Recovery", "Support", "Nutrition", "Heart health", "Lifestyle"].map((t) => (
+=======
+          {["Wellness", "Recovery", "Support", "Nutrition"].map((t) => (
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
             <button
               key={t}
               type="button"

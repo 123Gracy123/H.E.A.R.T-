@@ -1,4 +1,5 @@
 /** Client-side push notification registration (PWA) */
+<<<<<<< HEAD
 function urlBase64ToUint8Array(base64String: string) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
@@ -30,5 +31,25 @@ export async function registerPushNotifications(): Promise<boolean> {
     return true;
   } catch {
     return Notification.permission === "granted";
+=======
+export async function registerPushNotifications() {
+  if (typeof window === "undefined" || !("serviceWorker" in navigator)) return;
+
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    const permission = await Notification.requestPermission();
+    if (permission !== "granted") return;
+
+    // VAPID keys from env in production
+    const vapidKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
+    if (!vapidKey || !("PushManager" in window)) return;
+
+    await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: vapidKey,
+    });
+  } catch {
+    /* demo: push optional */
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
   }
 }

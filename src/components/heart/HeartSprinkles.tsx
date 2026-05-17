@@ -1,5 +1,6 @@
 "use client";
 
+<<<<<<< HEAD
 import { motion, useReducedMotion } from "framer-motion";
 import { useMemo } from "react";
 
@@ -34,10 +35,20 @@ function MiniHeart({ size, color }: { size: number; color: string }) {
 export function HeartSprinkles({ count = 28 }: { count?: number }) {
   const reduceMotion = useReducedMotion();
 
+=======
+import { motion } from "framer-motion";
+import { useMemo } from "react";
+
+const COLORS = ["#F8B4C4", "#E8A0A8", "#D4A5D4", "#FFD4C4", "#C44B5C", "#F5D0D8"];
+
+/** Soft falling heart confetti — elegant, non-overwhelming */
+export function HeartSprinkles({ count = 24 }: { count?: number }) {
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
   const particles = useMemo(
     () =>
       Array.from({ length: count }, (_, i) => ({
         id: i,
+<<<<<<< HEAD
         x: 4 + Math.random() * 92,
         delay: Math.random() * 10,
         duration: 14 + Math.random() * 12,
@@ -46,10 +57,19 @@ export function HeartSprinkles({ count = 28 }: { count?: number }) {
         drift: (Math.random() - 0.5) * 40,
         rotate: Math.random() * 360,
         opacityPeak: 0.35 + Math.random() * 0.25,
+=======
+        x: Math.random() * 100,
+        delay: Math.random() * 8,
+        duration: 12 + Math.random() * 10,
+        size: 8 + Math.random() * 14,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        rotate: Math.random() * 360,
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
       })),
     [count]
   );
 
+<<<<<<< HEAD
   if (reduceMotion) return null;
 
   return (
@@ -65,11 +85,34 @@ export function HeartSprinkles({ count = 28 }: { count?: number }) {
             x: [0, p.drift, p.drift * 0.6, 0],
             opacity: [0, p.opacityPeak, p.opacityPeak * 0.7, 0],
             rotate: [p.rotate, p.rotate + 120, p.rotate + 200],
+=======
+  return (
+    <motion.div
+      className="pointer-events-none fixed inset-0 z-[5] overflow-hidden"
+      aria-hidden
+    >
+      {particles.map((p) => (
+        <motion.span
+          key={p.id}
+          className="absolute opacity-0"
+          style={{
+            left: `${p.x}%`,
+            top: "-5%",
+            fontSize: p.size,
+            color: p.color,
+          }}
+          initial={{ y: 0, opacity: 0, rotate: p.rotate }}
+          animate={{
+            y: ["0vh", "110vh"],
+            opacity: [0, 0.5, 0.4, 0],
+            rotate: p.rotate + 180,
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
           }}
           transition={{
             duration: p.duration,
             delay: p.delay,
             repeat: Infinity,
+<<<<<<< HEAD
             ease: "easeInOut",
           }}
         >
@@ -77,5 +120,14 @@ export function HeartSprinkles({ count = 28 }: { count?: number }) {
         </motion.div>
       ))}
     </div>
+=======
+            ease: "linear",
+          }}
+        >
+          ♥
+        </motion.span>
+      ))}
+    </motion.div>
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
   );
 }

@@ -3,12 +3,18 @@
   "short_name": "HEART",
   "description": "Helping Every At-Risk Mother Thrive — California maternal cardiovascular support",
   "start_url": "/",
+<<<<<<< HEAD
   "scope": "/",
+=======
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
   "display": "standalone",
   "background_color": "#FFFBFA",
   "theme_color": "#A91D45",
   "orientation": "portrait-primary",
+<<<<<<< HEAD
   "categories": ["health", "medical", "lifestyle"],
+=======
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
   "icons": [
     {
       "src": "/icons/icon-192.png",

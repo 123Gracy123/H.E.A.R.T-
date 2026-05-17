@@ -10,6 +10,7 @@
 
 html {
   scroll-behavior: smooth;
+<<<<<<< HEAD
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -17,6 +18,8 @@ html {
   body {
     padding-bottom: env(safe-area-inset-bottom);
   }
+=======
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
 }
 
 body {

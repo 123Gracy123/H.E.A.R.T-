@@ -4,9 +4,14 @@ generator client {
 }
 
 datasource db {
+<<<<<<< HEAD
   provider  = "postgresql"
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
+=======
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
 }
 
 enum Role {

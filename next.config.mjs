@@ -7,6 +7,7 @@ const withPWA = withPWAInit({
   fallbacks: {
     document: "/offline",
   },
+<<<<<<< HEAD
   workboxOptions: {
     runtimeCaching: [
       {
@@ -36,6 +37,8 @@ const withPWA = withPWAInit({
       },
     ],
   },
+=======
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
 });
 
 /** @type {import('next').NextConfig} */

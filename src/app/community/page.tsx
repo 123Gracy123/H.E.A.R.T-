@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client";
 
 import { useMemo } from "react";
@@ -92,4 +93,10 @@ export default function CommunityPage() {
       </div>
     </div>
   );
+=======
+import { redirect } from "next/navigation";
+
+export default function CommunityPage() {
+  redirect("/messaging?tab=community");
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
 }

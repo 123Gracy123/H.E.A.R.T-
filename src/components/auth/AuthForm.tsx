@@ -40,6 +40,7 @@ export function AuthForm({ mode }: { mode: Mode }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
+<<<<<<< HEAD
         credentials: "include",
       });
       const raw = await res.text();
@@ -49,6 +50,10 @@ export function AuthForm({ mode }: { mode: Mode }) {
       } catch {
         throw new Error(res.ok ? "Invalid server response" : `Server error (${res.status})`);
       }
+=======
+      });
+      const data = await res.json();
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
       if (!res.ok) throw new Error(data.error || "Request failed");
       router.push("/health");
       router.refresh();

@@ -7,7 +7,10 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { heartColorsForRisk, type RiskLevel } from "@/lib/risk";
 import { cn } from "@/lib/cn";
+<<<<<<< HEAD
 import { useAppStore } from "@/store/useAppStore";
+=======
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
 import { heartRegions, type HeartRegion } from "./heartRegions";
 
 // const HeartScene3D = dynamic(
@@ -39,12 +42,19 @@ export function InteractiveHeart({
   onRegionClick,
 }: InteractiveHeartProps) {
   const router = useRouter();
+<<<<<<< HEAD
   const unlockedPieces = useAppStore((s) => s.unlockedHeartPieces);
   const unlockHeartPiece = useAppStore((s) => s.unlockHeartPiece);
   const [hovered, setHovered] = useState<string | null>(null);
   const [activeTouch, setActiveTouch] = useState<string | null>(null);
   const [pinned, setPinned] = useState<string | null>(null);
   const [snapping, setSnapping] = useState<string | null>(null);
+=======
+  const [hovered, setHovered] = useState<string | null>(null);
+  const [activeTouch, setActiveTouch] = useState<string | null>(null);
+  const [pinned, setPinned] = useState<string | null>(null);
+  const [unlocked, setUnlocked] = useState<string | null>(null);
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
   const [isMobile, setIsMobile] = useState(false);
   const colors = heartColorsForRisk(riskLevel);
 
@@ -58,6 +68,7 @@ export function InteractiveHeart({
 
   const handleClick = useCallback(
     (region: HeartRegion) => {
+<<<<<<< HEAD
       if (snapping) return;
       setSnapping(region.id);
       unlockHeartPiece(region.id);
@@ -65,12 +76,23 @@ export function InteractiveHeart({
       setTimeout(() => router.push(region.href), 720);
     },
     [router, onRegionClick, snapping, unlockHeartPiece]
+=======
+      setUnlocked(region.id);
+      onRegionClick?.(region);
+      setTimeout(() => router.push(region.href), 400);
+    },
+    [router, onRegionClick]
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
   );
 
   const showPersistent = persistentLabels && !isMobile;
   const isRegionActive = (id: string) =>
+<<<<<<< HEAD
     hovered === id || snapping === id || activeTouch === id || pinned === id;
   const isPieceUnlocked = (id: string) => unlockedPieces.includes(id);
+=======
+    hovered === id || unlocked === id || activeTouch === id || pinned === id;
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
 
   return (
     <div
@@ -136,6 +158,7 @@ export function InteractiveHeart({
           aria-label="Interactive heart navigation map"
         >
               <defs>
+<<<<<<< HEAD
                 <filter id="pieceGlow" x="-40%" y="-40%" width="180%" height="180%">
                   <feGaussianBlur stdDeviation="6" result="blur" />
                   <feMerge>
@@ -145,6 +168,10 @@ export function InteractiveHeart({
                 </filter>
                 <filter id="slotGlow" x="-50%" y="-50%" width="200%" height="200%">
                   <feGaussianBlur stdDeviation="8" result="blur" />
+=======
+                <filter id="pieceGlow">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
                   <feMerge>
                     <feMergeNode in="blur" />
                     <feMergeNode in="SourceGraphic" />
@@ -157,12 +184,16 @@ export function InteractiveHeart({
 
               {heartRegions.map((region) => {
                 const active = isRegionActive(region.id);
+<<<<<<< HEAD
                 const unlocked = isPieceUnlocked(region.id);
                 const isSnapping = snapping === region.id;
+=======
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
                 const showConnector = showLabels && (active || showPersistent);
 
                 return (
                   <g key={region.id}>
+<<<<<<< HEAD
                     {/* Puzzle slot — soft outline; glows when hovered or snapping */}
                     <motion.path
                       d={region.path}
@@ -194,6 +225,8 @@ export function InteractiveHeart({
                       pointerEvents="none"
                     />
 
+=======
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
                     {showConnector && (
                       <motion.path
                         d={`M ${region.cx} ${region.cy} Q ${region.curveCx} ${region.curveCy} ${region.labelX + 55} ${region.labelY + 14}`}
@@ -213,6 +246,7 @@ export function InteractiveHeart({
 
                     <motion.path
                       d={region.path}
+<<<<<<< HEAD
                       fill={active || isSnapping ? colors.primary : "transparent"}
                       fillOpacity={isSnapping ? 0.55 : active ? 0.38 : 0.02}
                       stroke={active || isSnapping ? colors.secondary : "transparent"}
@@ -232,6 +266,13 @@ export function InteractiveHeart({
                           : { duration: 0.2 }
                       }
                       style={{ transformOrigin: `${region.cx}px ${region.cy}px` }}
+=======
+                      fill={active ? colors.primary : "transparent"}
+                      fillOpacity={active ? 0.38 : 0.02}
+                      stroke={active ? colors.secondary : "transparent"}
+                      strokeWidth={active ? 2 : 0}
+                      filter={active ? "url(#pieceGlow)" : undefined}
+>>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
                       className="cursor-pointer"
                       onMouseEnter={() => setHovered(region.id)}
                       onMouseLeave={() => setHovered(null)}
