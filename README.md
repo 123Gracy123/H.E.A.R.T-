@@ -33,7 +33,7 @@ node scripts/generate-icons.mjs
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open https://heart-app-chi.vercel.app/login
 
 ## Demo Accounts
 
