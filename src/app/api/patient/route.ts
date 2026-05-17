@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { DEMO_PATIENT, isDemoSession } from "@/lib/demo-session";
 import {
   calculateRiskScore,
   parseBloodPressure,
@@ -13,21 +13,18 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const patient = await prisma.patient.findUnique({
-    where: { userId: session.id },
-  });
+  if (isDemoSession(session.id)) {
+    return NextResponse.json({ patient: DEMO_PATIENT });
+  }
 
-  return NextResponse.json({ patient });
+  return NextResponse.json({ patient: null });
 }
 
 export async function PATCH(request: Request) {
   try {
     const session = await getSession();
     if (!session) {
-      return NextResponse.json(
-        { error: "Sign in as patient@test.com to save to your profile." },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const body = await request.json();
@@ -43,9 +40,9 @@ export async function PATCH(request: Request) {
       sleepHours: body.sleepHours,
     });
 
-    const patient = await prisma.patient.upsert({
-      where: { userId: session.id },
-      update: {
+    if (isDemoSession(session.id)) {
+      const patient = {
+        ...DEMO_PATIENT,
         bloodPressure: body.bloodPressure,
         heartRate: body.heartRate,
         oxygenLevel: body.oxygenLevel,
@@ -56,27 +53,15 @@ export async function PATCH(request: Request) {
         trimester: body.trimester,
         age: body.age,
         riskScore,
-      },
-      create: {
-        userId: session.id,
-        bloodPressure: body.bloodPressure,
-        heartRate: body.heartRate,
-        oxygenLevel: body.oxygenLevel,
-        cholesterol: body.cholesterol,
-        weight: body.weight,
-        sleepHours: body.sleepHours,
-        stressLevel: body.stressLevel,
-        trimester: body.trimester ?? "First",
-        age: body.age,
+      };
+      return NextResponse.json({
+        patient,
+        riskLevel: riskLevelFromScore(riskScore),
         riskScore,
-      },
-    });
+      });
+    }
 
-    return NextResponse.json({
-      patient,
-      riskLevel: riskLevelFromScore(riskScore),
-      riskScore,
-    });
+    return NextResponse.json({ error: "Not available in demo mode" }, { status: 400 });
   } catch (err) {
     console.error("PATCH /api/patient:", err);
     return NextResponse.json(

@@ -13,10 +13,7 @@ import {
   BookOpen,
   Activity,
   MessageCircle,
-<<<<<<< HEAD
   Users,
-=======
->>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
   Phone,
   Map,
 } from "lucide-react";
@@ -28,10 +25,7 @@ const navLinks = [
   { href: "/", label: "Home", icon: Heart },
   { href: "/education", label: "Learn", icon: BookOpen },
   { href: "/health", label: "Health", icon: Activity },
-<<<<<<< HEAD
   { href: "/community", label: "Circle", icon: Users },
-=======
->>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
   { href: "/messaging", label: "Chat", icon: MessageCircle },
   { href: "/help", label: "Help", icon: Phone },
   { href: "/heatmap", label: "Risk map", icon: Map },

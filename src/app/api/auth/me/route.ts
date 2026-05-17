@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { getSession, getUserFromDb } from "@/lib/auth";
+import { getSession } from "@/lib/auth";
+import { DEMO_PATIENT, isDemoSession } from "@/lib/demo-session";
 
 export async function GET() {
   const session = await getSession();
@@ -7,9 +8,12 @@ export async function GET() {
     return NextResponse.json({ user: null });
   }
 
-  const user = await getUserFromDb(session.id);
-  return NextResponse.json({
-    user: session,
-    patient: user?.patient ?? null,
-  });
+  if (isDemoSession(session.id)) {
+    return NextResponse.json({
+      user: session,
+      patient: DEMO_PATIENT,
+    });
+  }
+
+  return NextResponse.json({ user: session, patient: null });
 }

@@ -5,13 +5,6 @@ import { prisma } from "./prisma";
 import type { Role } from "@prisma/client";
 
 const JWT_SECRET = process.env.JWT_SECRET || "heart-dev-secret";
-<<<<<<< HEAD
-
-if (process.env.NODE_ENV === "production" && !process.env.JWT_SECRET) {
-  console.warn("[auth] JWT_SECRET is not set — sessions will not work across deploys.");
-}
-=======
->>>>>>> 2c23014c87d77df49277e0f174bd9b36a880cce3
 const COOKIE_NAME = "heart_session";
 const MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
