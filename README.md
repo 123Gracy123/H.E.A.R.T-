@@ -46,14 +46,6 @@ Open https://heart-app-chi.vercel.app
 | Doctor  | doctor@test.com    | password123  |
 | Admin   | admin@test.com     | password123  |
 
-## Environment Variables
-
-See `.env.example`:
-
-- `DATABASE_URL` — SQLite path (`file:./dev.db`)
-- `JWT_SECRET` — signing secret
-- `NEXT_PUBLIC_APP_URL` — app URL
-- `NEXT_PUBLIC_VAPID_PUBLIC_KEY` — optional push notifications
 
 ## API Routes
 
